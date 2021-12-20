@@ -10,6 +10,7 @@ void GameManager::GameStart(Table* t) {
 
 	while(!GetBetting(t->p1));
 	DealCards(t);
+	// 구현 필요합니다
 }
 
 bool GameManager::GetBetting(Player* p1) {
