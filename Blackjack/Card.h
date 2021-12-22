@@ -13,7 +13,7 @@
 class Card
 {
 private:
-	int cardValue;			// 카드 값 1:A - 13:K
+	int cardValue;			// 카드 값 1:A - 10:10JQK
 	int cType;
 
 public:

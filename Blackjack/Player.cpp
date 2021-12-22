@@ -22,11 +22,17 @@ int Player::GetCardCount(void) {
 	return cardCount;
 }
 
+int Player::GetScore(void) {
+	return score;
+}
+
 long long Player::GetMoneyInfo(void) {
 	return money;
 }
 
 bool Player::GetCard(Deck* d) {
+	/* 21 이상이면 bust*/
+
 	pCardArr[cardCount] = d->Draw();
 	score += pCardArr[cardCount].GetValue();
 

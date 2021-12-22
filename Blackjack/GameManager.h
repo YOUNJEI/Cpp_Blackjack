@@ -8,6 +8,9 @@ public:
 	void GameStart(Table* t);
 	bool GetBetting(Player* p1);
 	void DealCards(Table* t);
+	char InputAction(Table* t);
+	int OpenCard(Table* t);
+	int Hit(Table* t);
 };
 
 #endif

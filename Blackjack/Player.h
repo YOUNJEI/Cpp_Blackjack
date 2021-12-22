@@ -20,6 +20,7 @@ public:
 	~Player();
 
 	int GetCardCount(void);
+	int GetScore(void);
 	long long GetMoneyInfo(void);
 	void InitforNewGame();
 	bool GetCard(Deck* d);

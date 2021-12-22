@@ -13,11 +13,17 @@ Deck::~Deck() {
 }
 
 void Deck::DeckInit(void) {
-	for (int i = 0; i < 13; i++) {
+	for (int i = 0; i < 10; i++) {
 		MyDeck->Push(Card(i+1, Heart));		// 하트카드 생성
 		MyDeck->Push(Card(i+1, Dia));		// 다이아카드 생성
 		MyDeck->Push(Card(i+1, Club));		// 클로버카드 생성
 		MyDeck->Push(Card(i+1, Spade));		// 스페이드카드 생성
+	}
+	for (int i = 0; i < 3; i++) {
+		MyDeck->Push(Card(10, Heart));		// 하트카드 생성
+		MyDeck->Push(Card(10, Dia));		// 다이아카드 생성
+		MyDeck->Push(Card(10, Club));		// 클로버카드 생성
+		MyDeck->Push(Card(10, Spade));		// 스페이드카드 생성
 	}
 }
 
