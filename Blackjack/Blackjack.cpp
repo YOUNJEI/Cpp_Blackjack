@@ -1,9 +1,9 @@
-/* Blackjack ver 0.1 */
-// 게임시작 후 카드 한장씩 나누어 주는거까지 구현
+/* Blackjack ver 0.2 */
+// A카드 (1 or 11) 예외 사항 구현 완료
 
-// Gamemanager.cpp
-// DealCards(); 이후로 구현
-/* 최종업데이트 2021.12.19 */
+// To do -> 게임반복, money, 승률 구현 필요
+
+/* 최종업데이트 2021.12.29 */
 
 #include <iostream>
 #include "GameManager.h"

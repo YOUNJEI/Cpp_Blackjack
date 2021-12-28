@@ -92,17 +92,22 @@ int GameManager::OpenCard(Table* t) {
 	/* player 铰府 矫 1 府畔  */
 	/* 公铰何 0 府畔		  */	
 	/* dealer 铰府 矫 -1 府畔 */
-
-	cout << "Your Score: " << t->p1->GetScore() << endl;
+	cout << endl;
+	cout << "********Card Open********" << endl;
+	cout << "Your Card: ";	t->p1->ShowCard(t->p1->GetCardCount()); cout << endl;
+	cout << "Your Score: " << t->p1->GetScore() << endl	<<	endl;
 
 	while (t->dealer->GetScore() < 17) {
 		cout << t->dealer->GetScore() << " Dealer new Card!"<<endl;
 		if (t->dealer->GetCard(t->deck)) {
+			cout << "Dealer Card: ";	t->dealer->ShowCard(t->dealer->GetCardCount());	cout << endl;
 			cout << "Dealer bust!!" << endl;
 			return 1;
 		}
 	}
-		cout << "Dealer Score: " << t->dealer->GetScore() << endl;
+	
+	cout << "Dealer Card: ";	t->dealer->ShowCard(t->dealer->GetCardCount());	cout << endl;
+	cout << "Dealer Score: " << t->dealer->GetScore() << endl;
 
 	if (t->p1->GetScore() > t->dealer->GetScore()) {
 		cout << "You Win!!" << endl;

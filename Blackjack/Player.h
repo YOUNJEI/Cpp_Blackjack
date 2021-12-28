@@ -1,6 +1,7 @@
 #ifndef __PLAYER_H__
 #define __PLAYER_H__
 
+#include <vector>
 #include "Deck.h"
 
 #define MAXCARDARR 30
@@ -9,7 +10,8 @@ class Player {
 private:
 	Card pCardArr[MAXCARDARR];
 	int cardCount;
-	int score;
+	std::vector<int> score;
+	bool hasCardA;
 	long long money;
 	long long betMoney;
 	int winCount;
