@@ -24,10 +24,16 @@ public:
 	int GetCardCount(void);
 	int GetScore(void);
 	long long GetMoneyInfo(void);
+	long long GetBetMoneyInfo(void);
+	int GetwinCount(void);
+	int GetlossCount(void);
+	void AddMoney(int m);
 	void InitforNewGame();
 	bool GetCard(Deck* d);
 	long long Betting(long long bMoney);
 	void ShowCard(int n);
+	void AddwinCount(void);
+	void AddlossCount(void);
 };
 
 #endif

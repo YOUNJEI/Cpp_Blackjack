@@ -1,6 +1,7 @@
-#include "GameManager.h"
 #include <iostream>
 #include <vector>
+#include <Windows.h>
+#include "GameManager.h"
 
 using namespace std;
 
@@ -13,6 +14,7 @@ void GameManager::GameStart(Table* t) {
 	t->deck->Shuffle();
 
 	while(!GetBetting(t->p1));			// 배팅
+	cout << endl;
 	
 	/* 배팅 후 2장 */
 	for(int i=0; i<2; i++)	DealCards(t);
@@ -40,14 +42,42 @@ void GameManager::GameStart(Table* t) {
 			break;
 		}
 	} while (game_result == 2);
+
+	switch (game_result) {
+	case 1:					// 플레이어 승리
+		cout << "배팅한 금액: " << t->p1->GetBetMoneyInfo() << endl;
+		cout << t->p1->GetBetMoneyInfo()*2 << "획득!" << endl;
+		t->p1->AddMoney(t->p1->GetBetMoneyInfo() * 2);
+		t->p1->AddwinCount();
+		break;
+
+	case 0:
+		cout << "무승부!" << endl;
+		cout << "배팅한 금액: " << t->p1->GetBetMoneyInfo() << endl;
+		t->p1->AddMoney(t->p1->GetBetMoneyInfo());
+		break;
+
+	case -1:
+		cout << "배팅한 금액: " << t->p1->GetBetMoneyInfo() << endl;
+		cout << t->p1->GetBetMoneyInfo() << "잃음!" << endl;
+		t->p1->AddlossCount();
+		break;
+	}
 }
 
 bool GameManager::GetBetting(Player* p1) {
 	long long bMoney;
 	cout << "보유현금: " << p1->GetMoneyInfo() << endl;
-
 	cout << "배팅금액: ";
 	cin >> bMoney;
+	
+	// cin 입력오류로 인한 무한루프 방지코드
+	if (cin.fail()) {
+		cin.clear();
+		cin.ignore(256, '\n');
+		bMoney = 0;
+	}
+
 	bMoney = p1->Betting(bMoney);
 
 	if (bMoney < 0) {
@@ -93,21 +123,30 @@ int GameManager::OpenCard(Table* t) {
 	/* 무승부 0 리턴		  */	
 	/* dealer 승리 시 -1 리턴 */
 	cout << endl;
-	cout << "********Card Open********" << endl;
+	cout << "********Card Open********" << endl;	Sleep(2000);
 	cout << "Your Card: ";	t->p1->ShowCard(t->p1->GetCardCount()); cout << endl;
-	cout << "Your Score: " << t->p1->GetScore() << endl	<<	endl;
+	cout << "Your Score: " << t->p1->GetScore() << endl	<<	endl;	Sleep(2000);
 
-	while (t->dealer->GetScore() < 17) {
-		cout << t->dealer->GetScore() << " Dealer new Card!"<<endl;
-		if (t->dealer->GetCard(t->deck)) {
-			cout << "Dealer Card: ";	t->dealer->ShowCard(t->dealer->GetCardCount());	cout << endl;
-			cout << "Dealer bust!!" << endl;
-			return 1;
+	if (t->dealer->GetScore() < 17) {
+		cout << "Dealer:" << t->dealer->GetScore() << " ("; t->dealer->ShowCard(t->dealer->GetCardCount());	cout << ")" << endl;	Sleep(2000);
+		while (t->dealer->GetScore() < 17) {
+			cout << "Dealer New Card!" << endl;	Sleep(2000);
+			if (t->dealer->GetCard(t->deck)) {
+				cout << "Dealer Card: ";	t->dealer->ShowCard(t->dealer->GetCardCount());	cout << endl << endl;	Sleep(2000);
+				cout << "Dealer bust!!" << endl;
+				return 1;
+			}
+			else
+			{
+				cout << t->dealer->GetScore() << endl;
+			}
 		}
 	}
 	
+	Sleep(2000);
 	cout << "Dealer Card: ";	t->dealer->ShowCard(t->dealer->GetCardCount());	cout << endl;
-	cout << "Dealer Score: " << t->dealer->GetScore() << endl;
+	cout << "Dealer Score: " << t->dealer->GetScore() << endl << endl;
+	Sleep(2000);
 
 	if (t->p1->GetScore() > t->dealer->GetScore()) {
 		cout << "You Win!!" << endl;
@@ -134,8 +173,14 @@ int GameManager::OpenCard(Table* t) {
 }
 
 int GameManager::Hit(Table* t) {
-	/* -1 bust*/
+	/* HIT									*/
+	/* OVER 21 (BUST) return -1				*/
+	/* If score is 21, return OpenCard		*/
+	/* else return 2 (nothing, keep going)	*/
+
 	t->p1->GetCard(t->deck);
+	
+	cout << endl;
 	cout << t->p1->GetScore() << endl;
 
 	if (t->p1->GetScore() > 21) {

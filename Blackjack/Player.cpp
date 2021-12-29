@@ -35,6 +35,22 @@ long long Player::GetMoneyInfo(void) {
 	return money;
 }
 
+long long Player::GetBetMoneyInfo(void) {
+	return betMoney;
+}
+
+int Player::GetwinCount(void) {
+	return winCount;
+}
+
+int Player::GetlossCount(void) {
+	return lossCount;
+}
+
+void Player::AddMoney(int m) {
+	this->money += m;
+}
+
 bool Player::GetCard(Deck* d) {
 	/* 21 이상이면 bust*/
 
@@ -82,4 +98,12 @@ void Player::ShowCard(int n) {
 	else {
 		for(int i=0; i<n; i++)	pCardArr[i].Print();
 	}
+}
+
+void Player::AddwinCount(void) {
+	this->winCount++;
+}
+
+void Player::AddlossCount(void) {
+	this->lossCount++;
 }

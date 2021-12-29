@@ -27,7 +27,6 @@ Card Stack::Pop(void) {
 
 		return stack[cPos--];
 	} catch (int exception) {				// 예외처리 부분
-		cout << "Stack is Empty!" << endl;
 		return Card(0, 0);					// Card(0,0)은 오류카드
 	}
 }

@@ -47,5 +47,18 @@ void Deck::Shuffle(void) {
 }
 
 Card Deck::Draw(void) {
-	return MyDeck->Pop();
+	Card temp = MyDeck->Pop();
+	
+	// 카드 전부 소진 시, 새로운 카드세트 생성 후 리턴
+	if (temp.GetValue() == 0 && temp.GetType() == 0) {
+		std::cout << "카드가 소진되었습니다!" << std::endl;
+		std::cout << "새로운 트럼프 카드 사용!" << std::endl;
+		this->DeckInit();
+		this->Shuffle();
+
+		temp = MyDeck->Pop();
+
+		return temp;
+	}
+	return temp;
 }
