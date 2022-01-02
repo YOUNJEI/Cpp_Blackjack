@@ -23,6 +23,7 @@ public:
 
 	int GetCardCount(void);
 	int GetScore(void);
+	bool GethasCardA(void);
 	long long GetMoneyInfo(void);
 	long long GetBetMoneyInfo(void);
 	int GetwinCount(void);

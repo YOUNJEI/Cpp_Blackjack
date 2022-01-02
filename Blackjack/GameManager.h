@@ -11,6 +11,7 @@ public:
 	char InputAction(Table* t);
 	int OpenCard(Table* t);
 	int Hit(Table* t);
+	bool CheckBlackJack(Table* t);
 };
 
 #endif

@@ -26,8 +26,16 @@ void GameManager::GameStart(Table* t) {
 	cout << "Dealer Card:";
 	t->dealer->ShowCard(1);
 	cout << endl;
-
+	
+	/* Stand or Hit */
 	do {
+		if (CheckBlackJack(t)) {
+			cout << "BlackJack!!" << endl;
+			Sleep(2000);
+			game_result = OpenCard(t);
+			break;
+		}
+
 		c = InputAction(t);
 
 		switch (c) {
@@ -127,7 +135,7 @@ int GameManager::OpenCard(Table* t) {
 	cout << "Your Card: ";	t->p1->ShowCard(t->p1->GetCardCount()); cout << endl;
 	cout << "Your Score: " << t->p1->GetScore() << endl	<<	endl;	Sleep(2000);
 
-	if (t->dealer->GetScore() < 17) {
+	if (t->dealer->GetScore() < 17 && CheckBlackJack(t) == false) {
 		cout << "Dealer:" << t->dealer->GetScore() << " ("; t->dealer->ShowCard(t->dealer->GetCardCount());	cout << ")" << endl;	Sleep(2000);
 		while (t->dealer->GetScore() < 17) {
 			cout << "Dealer New Card!" << endl;	Sleep(2000);
@@ -153,7 +161,7 @@ int GameManager::OpenCard(Table* t) {
 		return 1;
 	}
 	else if (t->p1->GetScore() == t->dealer->GetScore()) {
-		if (t->p1->GetCardCount() > t->dealer->GetCardCount()) {
+		if (t->p1->GetCardCount() < t->dealer->GetCardCount()) {
 			cout << "You Win!!" << endl;
 			return 1;
 		}
@@ -189,4 +197,20 @@ int GameManager::Hit(Table* t) {
 	}
 	else if (t->p1->GetScore() == 21) return OpenCard(t);
 	else return 2;
+}
+
+bool GameManager::CheckBlackJack(Table* t) {
+	/* Check BlackJack */
+	/* If dealer or player get a BlackJack, return true */
+	/* else return false */
+
+	if (t->dealer->GethasCardA()) {
+		if (t->dealer->GetScore() == 21 && t->dealer->GetCardCount() == 2)	return true;
+	}
+
+	if (t->p1->GethasCardA()) {
+		if (t->p1->GetScore() == 21 && t->p1->GetCardCount() == 2)	return true;
+	}
+
+	return false;
 }

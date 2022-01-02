@@ -16,7 +16,8 @@ void Player::InitforNewGame(void) {
 	cardCount = 0;
 	betMoney = 0;
 	hasCardA = false;
-	for (int i = 0; i < score.size(); i++)	score[i] = 0;
+	for (int i = score.size()-1; i > 0; i--)	score.pop_back();
+	score[0] = 0;
 }
 
 int Player::GetCardCount(void) {
@@ -29,6 +30,10 @@ int Player::GetScore(void) {
 		else return score[1];
 	}
 	else return score[0];
+}
+
+bool Player::GethasCardA(void) {
+	return this->hasCardA;
 }
 
 long long Player::GetMoneyInfo(void) {

@@ -1,10 +1,8 @@
-/* Blackjack ver 0.3 */
-// 게임 승패에 따른 보유금액 변동 구현
-// 승률 구현
-// 콘솔 환경에서의 기타 가독성 패치
-// ASAP -> Blackjack (21) 승리 조건 구현 필요.
+/* Blackjack ver 0.3.2 */
+// Blackjack (21) 승리 조건 구현
 // Future -> 저장기능 (플레이어 이름, 돈, 승률 등)
-/* 최종업데이트 2021.12.30 */
+// Future2 -> GUI 구현
+/* 최종업데이트 2022.01.02 */
 
 #include <iostream>
 #include <Windows.h>
@@ -19,7 +17,7 @@ int main(void) {
 	GameManager Handle;
 	char c;
 
-	cout << "Blackjack ver 0.3" << endl;
+	cout << "Blackjack ver 0.3.2" << endl;
 	
 	do {
 		// 게임 시작
