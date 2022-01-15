@@ -8,6 +8,7 @@ using namespace std;
 void GameManager::GameStart(Table* t) {
 	char c;
 	int game_result;
+	bool _flagblackjack = false;
 
 	t->dealer->InitforNewGame();
 	t->p1->InitforNewGame();
@@ -29,7 +30,14 @@ void GameManager::GameStart(Table* t) {
 	
 	/* Stand or Hit */
 	do {
+		_flagblackjack = false;							// flag º¯¼ö trueÀÎ »óÅÂ·Î, player ½Â¸®½Ã ºí·¢Àè º¸³Ê½º ¼ö·É
+
 		if (CheckBlackJack(t)) {
+			
+			// player°¡ ºí·¢Àè ½Â¸®Á¶°ÇÀ» °®Ãß¾ú´ÂÁö È®ÀÎÇÏ´Â ºÎºÐ
+			if (t->p1->GetScore() == 21)
+				_flagblackjack = true;
+
 			cout << "BlackJack!!" << endl;
 			Sleep(2000);
 			game_result = OpenCard(t);
@@ -54,8 +62,17 @@ void GameManager::GameStart(Table* t) {
 	switch (game_result) {
 	case 1:					// ÇÃ·¹ÀÌ¾î ½Â¸®
 		cout << "¹èÆÃÇÑ ±Ý¾×: " << t->p1->GetBetMoneyInfo() << endl;
-		cout << t->p1->GetBetMoneyInfo()*2 << "È¹µæ!" << endl;
-		t->p1->AddMoney(t->p1->GetBetMoneyInfo() * 2);
+		
+		// If player win with blackjack --> reward *1.5
+		if (_flagblackjack) {
+			cout << t->p1->GetBetMoneyInfo() * 2.5 << "È¹µæ!" << endl;
+			t->p1->AddMoney(t->p1->GetBetMoneyInfo() * 2.5);
+		}
+		// if player win with non-blackjack --> reward *1
+		else {
+			cout << t->p1->GetBetMoneyInfo() * 2 << "È¹µæ!" << endl;
+			t->p1->AddMoney(t->p1->GetBetMoneyInfo() * 2);
+		}
 		t->p1->AddwinCount();
 		break;
 
@@ -161,18 +178,22 @@ int GameManager::OpenCard(Table* t) {
 		return 1;
 	}
 	else if (t->p1->GetScore() == t->dealer->GetScore()) {
-		if (t->p1->GetCardCount() < t->dealer->GetCardCount()) {
-			cout << "You Win!!" << endl;
-			return 1;
+		if (CheckBlackJack(t) == true) {
+			if (t->p1->GetCardCount() < t->dealer->GetCardCount()) {
+				cout << "You Win!!" << endl;
+				return 1;
+			}
+			else if (t->p1->GetCardCount() == t->dealer->GetCardCount()) {
+				cout << "Draw!!" << endl;
+				return 0;
+			}
+			else {
+				cout << "Dealer Win!!" << endl;
+				return -1;
+			}
 		}
-		else if (t->p1->GetCardCount() == t->dealer->GetCardCount()) {
-			cout << "Draw!!" << endl;
+		else
 			return 0;
-		}
-		else {
-			cout << "Dealer Win!!" << endl;
-			return -1;
-		}
 	}
 	else {
 		cout << "Dealer Win!!" << endl;

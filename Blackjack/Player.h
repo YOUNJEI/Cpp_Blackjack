@@ -21,6 +21,7 @@ public:
 	Player();
 	~Player();
 
+	// Get
 	int GetCardCount(void);
 	int GetScore(void);
 	bool GethasCardA(void);
@@ -28,6 +29,12 @@ public:
 	long long GetBetMoneyInfo(void);
 	int GetwinCount(void);
 	int GetlossCount(void);
+
+	// Set
+	void SetMoneyInfo(long long m);
+	void SetwinCount(int w);
+	void SetlossCount(int l);
+
 	void AddMoney(int m);
 	void InitforNewGame();
 	bool GetCard(Deck* d);

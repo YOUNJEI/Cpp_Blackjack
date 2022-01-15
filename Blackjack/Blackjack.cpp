@@ -1,12 +1,15 @@
-/* Blackjack ver 0.3.2 */
-// Blackjack (21) 승리 조건 구현
-// Future -> 저장기능 (플레이어 이름, 돈, 승률 등)
+/* Blackjack ver 0.4.0 */
+// 저장기능 구현
+// 블랙잭 승리시 특수보상 구현 (1.5배)
+// 무승부(Draw) 관련 룰 수정
+// Future -> 더블다운 구현
 // Future2 -> GUI 구현
-/* 최종업데이트 2022.01.02 */
+/* 최종업데이트 2022.01.15 */
 
 #include <iostream>
 #include <Windows.h>
 #include "GameManager.h"
+#include "SaveHelper.h"
 
 using namespace std;
 
@@ -15,9 +18,16 @@ int main(void) {
 	Player dealer, p1;
 	Table t1(&d, &dealer, &p1);
 	GameManager Handle;
+	SaveHelper sH("savedata.txt");
 	char c;
 
 	cout << "Blackjack ver 0.3.2" << endl;
+	cout << "저장데이터를 불러옵니다.." << endl;
+	
+	if (sH.LoadData(&p1) == false)
+		cout << "데이터 불러오기 실패" << endl;
+	else
+		cout << "데이터를 불러왔습니다." << endl;
 	
 	do {
 		// 게임 시작
@@ -40,6 +50,8 @@ int main(void) {
 		cin >> c;
 		cout << endl;
 	} while (c!='2');
+
+	sH.SaveData(&p1);
 
 	return 0;
 }

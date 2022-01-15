@@ -2,6 +2,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <iostream>
+#include <time.h>
 
 Deck::Deck() {
 	MyDeck = new Stack(BLACKJACKCARDSIZE);

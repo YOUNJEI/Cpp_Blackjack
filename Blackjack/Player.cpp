@@ -52,6 +52,18 @@ int Player::GetlossCount(void) {
 	return lossCount;
 }
 
+void Player::SetMoneyInfo(long long m) {
+	this->money = m;
+}
+
+void Player::SetwinCount(int w) {
+	this->winCount = w;
+}
+
+void Player::SetlossCount(int l) {
+	this->lossCount = l;
+}
+
 void Player::AddMoney(int m) {
 	this->money += m;
 }
