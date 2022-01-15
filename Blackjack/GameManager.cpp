@@ -9,9 +9,38 @@ void GameManager::GameStart(Table* t) {
 	char c;
 	int game_result;
 	bool _flagblackjack = false;
+	bool _escapeflag = true;				// escapeflag for loop in bankrupt condition
 
 	t->dealer->InitforNewGame();
 	t->p1->InitforNewGame();
+
+	// 파산시 신규게임 or 게임종료
+	if (t->p1->GetMoneyInfo() <= 0) {
+		
+		cout << "현금이 부족합니다" << endl;
+		
+		do {
+			_escapeflag = true;
+			cout << "게임을 초기화 하시겠습니까? (Y/N)";
+			cin >> c;
+
+			switch (c) {
+			case 'y':
+			case 'Y':
+				t->p1->SetMoneyInfo(1000000);
+				t->p1->SetwinCount(0);
+				t->p1->SetlossCount(0);
+				_escapeflag = false;
+				break;
+
+			case 'n':
+			case 'N':
+				exit(-1);
+				break;
+			}
+		} while (_escapeflag);
+	}
+
 	t->deck->Shuffle();
 
 	while(!GetBetting(t->p1));			// 배팅

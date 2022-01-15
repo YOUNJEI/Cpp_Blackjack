@@ -1,7 +1,5 @@
-/* Blackjack ver 0.4.0 */
-// 저장기능 구현
-// 블랙잭 승리시 특수보상 구현 (1.5배)
-// 무승부(Draw) 관련 룰 수정
+/* Blackjack ver 0.4.1 */
+// 파산시 게임초기화 구현
 // Future -> 더블다운 구현
 // Future2 -> GUI 구현
 /* 최종업데이트 2022.01.15 */
@@ -21,13 +19,20 @@ int main(void) {
 	SaveHelper sH("savedata.txt");
 	char c;
 
-	cout << "Blackjack ver 0.3.2" << endl;
+	cout << "Blackjack ver 0.4.1" << endl;
 	cout << "저장데이터를 불러옵니다.." << endl;
 	
 	if (sH.LoadData(&p1) == false)
 		cout << "데이터 불러오기 실패" << endl;
-	else
+	else {
 		cout << "데이터를 불러왔습니다." << endl;
+		cout << "승리: " << p1.GetwinCount() << "\t" << "패배: " << p1.GetlossCount() << endl;
+		cout << "승률: ";
+		if (p1.GetwinCount() + p1.GetlossCount() != 0)
+			cout << ((double)p1.GetwinCount() / (p1.GetwinCount() + p1.GetlossCount())) * 100 << "%" << endl << endl;
+		else
+			cout << "0.00%" << endl << endl;
+	}
 	
 	do {
 		// 게임 시작
