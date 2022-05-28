@@ -69,11 +69,11 @@ void Player::AddMoney(int m) {
 }
 
 bool Player::GetCard(Deck* d) {
-	/* 21 ÀÌ»óÀÌ¸é bust*/
+	/* 21 ì´ìƒì´ë©´ bust*/
 
 	pCardArr[cardCount] = d->Draw();
 
-	// AÄ«µå ÀÏ°æ¿ì +1 or +11 °í·ÁÇÏ¿© Á¡¼ö °è»ê
+	// Aì¹´ë“œ ì¼ê²½ìš° +1 or +11 ê³ ë ¤í•˜ì—¬ ì ìˆ˜ ê³„ì‚°
 	if (pCardArr[cardCount].GetValue() == 1) {
 		if (score.size() == 1) { 
 			score.push_back(score[0]);
@@ -111,7 +111,7 @@ long long Player::Betting(long long bMoney) {
 }
 
 void Player::ShowCard(int n) {
-	if (n <= 0)	"Ä«µå°¡ ¾ø½À´Ï´Ù.";
+	if (n <= 0)	"ì¹´ë“œê°€ ì—†ìŠµë‹ˆë‹¤.";
 	else {
 		for(int i=0; i<n; i++)	pCardArr[i].Print();
 	}

@@ -14,14 +14,14 @@ void GameManager::GameStart(Table* t) {
 	t->dealer->InitforNewGame();
 	t->p1->InitforNewGame();
 
-	// ÆÄ»ê½Ã ½Å±Ô°ÔÀÓ or °ÔÀÓÁ¾·á
+	// íŒŒì‚°ì‹œ ì‹ ê·œê²Œìž„ or ê²Œìž„ì¢…ë£Œ
 	if (t->p1->GetMoneyInfo() <= 0) {
 		
-		cout << "Çö±ÝÀÌ ºÎÁ·ÇÕ´Ï´Ù" << endl;
+		cout << "í˜„ê¸ˆì´ ë¶€ì¡±í•©ë‹ˆë‹¤" << endl;
 		
 		do {
 			_escapeflag = true;
-			cout << "°ÔÀÓÀ» ÃÊ±âÈ­ ÇÏ½Ã°Ú½À´Ï±î? (Y/N)";
+			cout << "ê²Œìž„ì„ ì´ˆê¸°í™” í•˜ì‹œê² ìŠµë‹ˆê¹Œ? (Y/N)";
 			cin >> c;
 
 			switch (c) {
@@ -43,10 +43,10 @@ void GameManager::GameStart(Table* t) {
 
 	t->deck->Shuffle();
 
-	while(!GetBetting(t->p1));			// ¹èÆÃ
+	while(!GetBetting(t->p1));			// ë°°íŒ…
 	cout << endl;
 	
-	/* ¹èÆÃ ÈÄ 2Àå */
+	/* ë°°íŒ… í›„ 2ìž¥ */
 	for(int i=0; i<2; i++)	DealCards(t);
 
 	cout << "My Card:";
@@ -59,11 +59,11 @@ void GameManager::GameStart(Table* t) {
 	
 	/* Stand or Hit */
 	do {
-		_flagblackjack = false;							// flag º¯¼ö trueÀÎ »óÅÂ·Î, player ½Â¸®½Ã ºí·¢Àè º¸³Ê½º ¼ö·É
+		_flagblackjack = false;							// flag ë³€ìˆ˜ trueì¸ ìƒíƒœë¡œ, player ìŠ¹ë¦¬ì‹œ ë¸”ëž™ìž­ ë³´ë„ˆìŠ¤ ìˆ˜ë ¹
 
 		if (CheckBlackJack(t)) {
 			
-			// player°¡ ºí·¢Àè ½Â¸®Á¶°ÇÀ» °®Ãß¾ú´ÂÁö È®ÀÎÇÏ´Â ºÎºÐ
+			// playerê°€ ë¸”ëž™ìž­ ìŠ¹ë¦¬ì¡°ê±´ì„ ê°–ì¶”ì—ˆëŠ”ì§€ í™•ì¸í•˜ëŠ” ë¶€ë¶„
 			if (t->p1->GetScore() == 21)
 				_flagblackjack = true;
 
@@ -89,31 +89,31 @@ void GameManager::GameStart(Table* t) {
 	} while (game_result == 2);
 
 	switch (game_result) {
-	case 1:					// ÇÃ·¹ÀÌ¾î ½Â¸®
-		cout << "¹èÆÃÇÑ ±Ý¾×: " << t->p1->GetBetMoneyInfo() << endl;
+	case 1:					// í”Œë ˆì´ì–´ ìŠ¹ë¦¬
+		cout << "ë°°íŒ…í•œ ê¸ˆì•¡: " << t->p1->GetBetMoneyInfo() << endl;
 		
 		// If player win with blackjack --> reward *1.5
 		if (_flagblackjack) {
-			cout << t->p1->GetBetMoneyInfo() * 2.5 << "È¹µæ!" << endl;
+			cout << t->p1->GetBetMoneyInfo() * 2.5 << "íšë“!" << endl;
 			t->p1->AddMoney(t->p1->GetBetMoneyInfo() * 2.5);
 		}
 		// if player win with non-blackjack --> reward *1
 		else {
-			cout << t->p1->GetBetMoneyInfo() * 2 << "È¹µæ!" << endl;
+			cout << t->p1->GetBetMoneyInfo() * 2 << "íšë“!" << endl;
 			t->p1->AddMoney(t->p1->GetBetMoneyInfo() * 2);
 		}
 		t->p1->AddwinCount();
 		break;
 
 	case 0:
-		cout << "¹«½ÂºÎ!" << endl;
-		cout << "¹èÆÃÇÑ ±Ý¾×: " << t->p1->GetBetMoneyInfo() << endl;
+		cout << "ë¬´ìŠ¹ë¶€!" << endl;
+		cout << "ë°°íŒ…í•œ ê¸ˆì•¡: " << t->p1->GetBetMoneyInfo() << endl;
 		t->p1->AddMoney(t->p1->GetBetMoneyInfo());
 		break;
 
 	case -1:
-		cout << "¹èÆÃÇÑ ±Ý¾×: " << t->p1->GetBetMoneyInfo() << endl;
-		cout << t->p1->GetBetMoneyInfo() << "ÀÒÀ½!" << endl;
+		cout << "ë°°íŒ…í•œ ê¸ˆì•¡: " << t->p1->GetBetMoneyInfo() << endl;
+		cout << t->p1->GetBetMoneyInfo() << "ìžƒìŒ!" << endl;
 		t->p1->AddlossCount();
 		break;
 	}
@@ -121,11 +121,11 @@ void GameManager::GameStart(Table* t) {
 
 bool GameManager::GetBetting(Player* p1) {
 	long long bMoney;
-	cout << "º¸À¯Çö±Ý: " << p1->GetMoneyInfo() << endl;
-	cout << "¹èÆÃ±Ý¾×: ";
+	cout << "ë³´ìœ í˜„ê¸ˆ: " << p1->GetMoneyInfo() << endl;
+	cout << "ë°°íŒ…ê¸ˆì•¡: ";
 	cin >> bMoney;
 	
-	// cin ÀÔ·Â¿À·ù·Î ÀÎÇÑ ¹«ÇÑ·çÇÁ ¹æÁöÄÚµå
+	// cin ìž…ë ¥ì˜¤ë¥˜ë¡œ ì¸í•œ ë¬´í•œë£¨í”„ ë°©ì§€ì½”ë“œ
 	if (cin.fail()) {
 		cin.clear();
 		cin.ignore(256, '\n');
@@ -135,11 +135,11 @@ bool GameManager::GetBetting(Player* p1) {
 	bMoney = p1->Betting(bMoney);
 
 	if (bMoney < 0) {
-		cout << "º¸À¯Çö±Ý ºÎÁ·" << endl << endl;
+		cout << "ë³´ìœ í˜„ê¸ˆ ë¶€ì¡±" << endl << endl;
 		return false;
 	}
 	else if (bMoney == 0) {
-		cout << "¹èÆÃ±Ý¾×Àº 0¿øº¸´Ù Ä¿¾ßÇÕ´Ï´Ù." << endl << endl;
+		cout << "ë°°íŒ…ê¸ˆì•¡ì€ 0ì›ë³´ë‹¤ ì»¤ì•¼í•©ë‹ˆë‹¤." << endl << endl;
 		return false;
 	}
 	else {
@@ -173,9 +173,9 @@ char GameManager::InputAction(Table* t) {
 }
 
 int GameManager::OpenCard(Table* t) {
-	/* player ½Â¸® ½Ã 1 ¸®ÅÏ  */
-	/* ¹«½ÂºÎ 0 ¸®ÅÏ		  */	
-	/* dealer ½Â¸® ½Ã -1 ¸®ÅÏ */
+	/* player ìŠ¹ë¦¬ ì‹œ 1 ë¦¬í„´  */
+	/* ë¬´ìŠ¹ë¶€ 0 ë¦¬í„´		  */	
+	/* dealer ìŠ¹ë¦¬ ì‹œ -1 ë¦¬í„´ */
 	cout << endl;
 	cout << "********Card Open********" << endl;	Sleep(2000);
 	cout << "Your Card: ";	t->p1->ShowCard(t->p1->GetCardCount()); cout << endl;

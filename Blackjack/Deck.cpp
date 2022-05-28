@@ -15,21 +15,21 @@ Deck::~Deck() {
 
 void Deck::DeckInit(void) {
 	for (int i = 0; i < 10; i++) {
-		MyDeck->Push(Card(i+1, Heart));		// ÇÏÆ®Ä«µå »ı¼º
-		MyDeck->Push(Card(i+1, Dia));		// ´ÙÀÌ¾ÆÄ«µå »ı¼º
-		MyDeck->Push(Card(i+1, Club));		// Å¬·Î¹öÄ«µå »ı¼º
-		MyDeck->Push(Card(i+1, Spade));		// ½ºÆäÀÌµåÄ«µå »ı¼º
+		MyDeck->Push(Card(i+1, Heart));		// í•˜íŠ¸ì¹´ë“œ ìƒì„±
+		MyDeck->Push(Card(i+1, Dia));		// ë‹¤ì´ì•„ì¹´ë“œ ìƒì„±
+		MyDeck->Push(Card(i+1, Club));		// í´ë¡œë²„ì¹´ë“œ ìƒì„±
+		MyDeck->Push(Card(i+1, Spade));		// ìŠ¤í˜ì´ë“œì¹´ë“œ ìƒì„±
 	}
 	for (int i = 0; i < 3; i++) {
-		MyDeck->Push(Card(10, Heart));		// ÇÏÆ®Ä«µå »ı¼º
-		MyDeck->Push(Card(10, Dia));		// ´ÙÀÌ¾ÆÄ«µå »ı¼º
-		MyDeck->Push(Card(10, Club));		// Å¬·Î¹öÄ«µå »ı¼º
-		MyDeck->Push(Card(10, Spade));		// ½ºÆäÀÌµåÄ«µå »ı¼º
+		MyDeck->Push(Card(10, Heart));		// í•˜íŠ¸ì¹´ë“œ ìƒì„±
+		MyDeck->Push(Card(10, Dia));		// ë‹¤ì´ì•„ì¹´ë“œ ìƒì„±
+		MyDeck->Push(Card(10, Club));		// í´ë¡œë²„ì¹´ë“œ ìƒì„±
+		MyDeck->Push(Card(10, Spade));		// ìŠ¤í˜ì´ë“œì¹´ë“œ ìƒì„±
 	}
 }
 
 void Deck::Shuffle(void) {
-	// index °ªÀ» ³­¼ö·Î ÃßÃâÇÏ¿© Shuffle
+	// index ê°’ì„ ë‚œìˆ˜ë¡œ ì¶”ì¶œí•˜ì—¬ Shuffle
 
 	Card temp;
 	int x, y;
@@ -50,10 +50,10 @@ void Deck::Shuffle(void) {
 Card Deck::Draw(void) {
 	Card temp = MyDeck->Pop();
 	
-	// Ä«µå ÀüºÎ ¼ÒÁø ½Ã, »õ·Î¿î Ä«µå¼¼Æ® »ı¼º ÈÄ ¸®ÅÏ
+	// ì¹´ë“œ ì „ë¶€ ì†Œì§„ ì‹œ, ìƒˆë¡œìš´ ì¹´ë“œì„¸íŠ¸ ìƒì„± í›„ ë¦¬í„´
 	if (temp.GetValue() == 0 && temp.GetType() == 0) {
-		std::cout << "Ä«µå°¡ ¼ÒÁøµÇ¾ú½À´Ï´Ù!" << std::endl;
-		std::cout << "»õ·Î¿î Æ®·³ÇÁ Ä«µå »ç¿ë!" << std::endl;
+		std::cout << "ì¹´ë“œê°€ ì†Œì§„ë˜ì—ˆìŠµë‹ˆë‹¤!" << std::endl;
+		std::cout << "ìƒˆë¡œìš´ íŠ¸ëŸ¼í”„ ì¹´ë“œ ì‚¬ìš©!" << std::endl;
 		this->DeckInit();
 		this->Shuffle();
 

@@ -1,8 +1,6 @@
 #ifndef __CARD_H__
 #define __CARD_H__
 
-/*	트럼프 카드 구현 */
-
 #define Heart 1
 #define Dia 2
 #define Club 3
@@ -11,7 +9,7 @@
 class Card
 {
 private:
-	int cardValue;			// 카드 값 A = 1 | 11, 2-10(JQK)
+	int cardValue;
 	int cType;
 
 public:

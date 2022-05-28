@@ -3,64 +3,64 @@
 
 using namespace std;
 
-// Card Å¬·¡½º ±âº» »ý¼ºÀÚ (Default: 0 | Heart)
+// Card í´ëž˜ìŠ¤ ê¸°ë³¸ ìƒì„±ìž (Default: 0 | Heart)
 Card::Card() {
 	this->cardValue = 0;
 	this->cType = Heart;
 }
 
-// Card Å¬·¡½º »ý¼ºÀÚ (¸â¹öº¯¼ö ÃÊ±âÈ­)
+// Card í´ëž˜ìŠ¤ ìƒì„±ìž (ë©¤ë²„ë³€ìˆ˜ ì´ˆê¸°í™”)
 Card::Card(int cV, int cT) {
 	this->cardValue = cV;
 	this->cType = cT;
 }
 
-// Card Å¬·¡½º º¹»ç »ý¼ºÀÚ
+// Card í´ëž˜ìŠ¤ ë³µì‚¬ ìƒì„±ìž
 Card::Card(const Card& origin) {
 	this->cardValue = origin.cardValue;
 	this->cType = origin.cType;
 }
 
-// Card Å¬·¡½º ¼Ò¸êÀÚ
+// Card í´ëž˜ìŠ¤ ì†Œë©¸ìž
 Card::~Card() {};
 
-// ¸â¹öº¯¼ö cardValue Set ÇÔ¼ö
+// ë©¤ë²„ë³€ìˆ˜ cardValue Set í•¨ìˆ˜
 void Card::SetValue(int v) {
 	this->cardValue = v;
 }
 
-// ¸â¹öº¯¼ö cType Set ÇÔ¼ö
+// ë©¤ë²„ë³€ìˆ˜ cType Set í•¨ìˆ˜
 void Card::SetType(int v) {
 	this->cType = v;
 }
 
-// ¸â¹öº¯¼ö cardValue Get ÇÔ¼ö
+// ë©¤ë²„ë³€ìˆ˜ cardValue Get í•¨ìˆ˜
 int Card::GetValue(void) {
 	return this->cardValue;
 }
 
-// ¸â¹öº¯¼ö cType Get ÇÔ¼ö
+// ë©¤ë²„ë³€ìˆ˜ cType Get í•¨ìˆ˜
 int Card::GetType(void) {
 	return this->cType;
 }
 
-// Card Ãâ·Â ÇÔ¼ö (format eg) "ÇÏÆ®1"
+// Card ì¶œë ¥ í•¨ìˆ˜ (format eg) "í•˜íŠ¸1"
 void Card::Print(void) {
 	switch (cType) {
 	case 1:
-		cout << "ÇÏÆ®";
+		cout << "í•˜íŠ¸";
 		break;
 
 	case 2:
-		cout << "´ÙÀÌ¾Æ";
+		cout << "ë‹¤ì´ì•„";
 		break;
 
 	case 3:
-		cout << "Å¬·Î¹ö";
+		cout << "í´ë¡œë²„";
 		break;
 
 	case 4:
-		cout << "½ºÆäÀÌµå";
+		cout << "ìŠ¤íŽ˜ì´ë“œ";
 		break;
 
 	default:

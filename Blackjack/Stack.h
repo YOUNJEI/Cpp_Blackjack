@@ -3,10 +3,7 @@
 
 #include "Card.h"
 
-/*
-Deck ±¸ÇöÀ» À§ÇØ Stack ±¸Á¶ »ç¿ë (¹è¿­ ±â¹İ)
-*/
-
+/*	Deck êµ¬í˜„ì„ ìœ„í•´ Stack êµ¬ì¡° ì‚¬ìš© (ë°°ì—´ ê¸°ë°˜)	*/
 class Stack {
 private:
 	int Size;

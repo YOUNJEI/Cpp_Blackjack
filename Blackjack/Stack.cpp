@@ -23,17 +23,17 @@ bool Stack::isEmpty(void) {
 
 Card Stack::Pop(void) {
 	try {
-		if (isEmpty())	throw cPos;			// StackÀÌ ºñ¾îÀÖÀ¸¸é, ¿¹¿ÜÃ³¸®
+		if (isEmpty())	throw cPos;			// Stackì´ ë¹„ì–´ìˆìœ¼ë©´, ì˜ˆì™¸ì²˜ë¦¬
 
 		return stack[cPos--];
-	} catch (int exception) {				// ¿¹¿ÜÃ³¸® ºÎºĞ
-		return Card(0, 0);					// Card(0,0)Àº ¿À·ùÄ«µå
+	} catch (int exception) {				// ì˜ˆì™¸ì²˜ë¦¬ ë¶€ë¶„
+		return Card(0, 0);					// Card(0,0)ì€ ì˜¤ë¥˜ì¹´ë“œ
 	}
 }
 
 void Stack::Push(Card c) {
 	try {
-		if (isFull())	throw cPos;			// StackÀÌ ²ËÃ¡À¸¸é, ¿¹¿ÜÃ³¸®
+		if (isFull())	throw cPos;			// Stackì´ ê½‰ì°¼ìœ¼ë©´, ì˜ˆì™¸ì²˜ë¦¬
 
 		stack[++cPos] = c;
 	} catch (int exception) {

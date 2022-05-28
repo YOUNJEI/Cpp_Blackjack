@@ -1,8 +1,8 @@
 /* Blackjack ver 0.4.1 */
-// ÆÄ»ê½Ã °ÔÀÓÃÊ±âÈ­ ±¸Çö
-// Future -> ´õºí´Ù¿î ±¸Çö
-// Future2 -> GUI ±¸Çö
-/* ÃÖÁ¾¾÷µ¥ÀÌÆ® 2022.01.15 */
+// íŒŒì‚°ì‹œ ê²Œì„ì´ˆê¸°í™” êµ¬í˜„
+// Future -> ë”ë¸”ë‹¤ìš´ êµ¬í˜„
+// Future2 -> GUI êµ¬í˜„
+/* ìµœì¢…ì—…ë°ì´íŠ¸ 2022.01.15 */
 
 #include <iostream>
 #include <Windows.h>
@@ -20,14 +20,14 @@ int main(void) {
 	char c;
 
 	cout << "Blackjack ver 0.4.1" << endl;
-	cout << "ÀúÀåµ¥ÀÌÅÍ¸¦ ºÒ·¯¿É´Ï´Ù.." << endl;
+	cout << "ì €ì¥ë°ì´í„°ë¥¼ ë¶ˆëŸ¬ì˜µë‹ˆë‹¤.." << endl;
 	
 	if (sH.LoadData(&p1) == false)
-		cout << "µ¥ÀÌÅÍ ºÒ·¯¿À±â ½ÇÆĞ" << endl;
+		cout << "ë°ì´í„° ë¶ˆëŸ¬ì˜¤ê¸° ì‹¤íŒ¨" << endl;
 	else {
-		cout << "µ¥ÀÌÅÍ¸¦ ºÒ·¯¿Ô½À´Ï´Ù." << endl;
-		cout << "½Â¸®: " << p1.GetwinCount() << "\t" << "ÆĞ¹è: " << p1.GetlossCount() << endl;
-		cout << "½Â·ü: ";
+		cout << "ë°ì´í„°ë¥¼ ë¶ˆëŸ¬ì™”ìŠµë‹ˆë‹¤." << endl;
+		cout << "ìŠ¹ë¦¬: " << p1.GetwinCount() << "\t" << "íŒ¨ë°°: " << p1.GetlossCount() << endl;
+		cout << "ìŠ¹ë¥ : ";
 		if (p1.GetwinCount() + p1.GetlossCount() != 0)
 			cout << ((double)p1.GetwinCount() / (p1.GetwinCount() + p1.GetlossCount())) * 100 << "%" << endl << endl;
 		else
@@ -35,23 +35,23 @@ int main(void) {
 	}
 	
 	do {
-		// °ÔÀÓ ½ÃÀÛ
+		// ê²Œì„ ì‹œì‘
 		Handle.GameStart(&t1);
 
-		// °ÔÀÓ Á¾·á ÈÄ
+		// ê²Œì„ ì¢…ë£Œ í›„
 		Sleep(2000);
 		cout << endl;
-		cout << "º¸À¯Çö±İ: " << p1.GetMoneyInfo() << endl;
-		cout << "½Â¸®: " << p1.GetwinCount() << "\t" << "ÆĞ¹è: " << p1.GetlossCount() << endl;
-		cout << "½Â·ü: ";
+		cout << "ë³´ìœ í˜„ê¸ˆ: " << p1.GetMoneyInfo() << endl;
+		cout << "ìŠ¹ë¦¬: " << p1.GetwinCount() << "\t" << "íŒ¨ë°°: " << p1.GetlossCount() << endl;
+		cout << "ìŠ¹ë¥ : ";
 		if (p1.GetwinCount() + p1.GetlossCount() != 0)
 			cout << ((double)p1.GetwinCount() / (p1.GetwinCount() + p1.GetlossCount())) * 100 << "%" << endl << endl;
 		else
 			cout << "0.00%" << endl << endl;
 
-		cout << "****»õ°ÔÀÓÀ» ½ÃÀÛÇÏ½Ã°Ú½À´Ï±î?****" << endl;
-		cout << "»õ°ÔÀÓ: 1" << endl;
-		cout << "°ÔÀÓÁ¾·á: 2" << endl;
+		cout << "****ìƒˆê²Œì„ì„ ì‹œì‘í•˜ì‹œê² ìŠµë‹ˆê¹Œ?****" << endl;
+		cout << "ìƒˆê²Œì„: 1" << endl;
+		cout << "ê²Œì„ì¢…ë£Œ: 2" << endl;
 		cin >> c;
 		cout << endl;
 	} while (c!='2');
